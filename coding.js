@@ -55,3 +55,20 @@
 //   }
 
   // ----------------------------------------------------------- //
+
+  // ----------------------------------------------------------- //
+// -- String ends with? -- //
+// Complete the solution so that it returns true if the first argument(string) passed in ends with the 2nd argument (also a string).
+
+// code //
+// const solution = (firstStr,secondStr) => {
+//   const firstArr = firstStr.split('')
+//   const secondArr = secondStr.split('')
+//   const segment = firstArr.slice(-secondArr.length)
+//   // console.log(segment,secondArr)
+//   if (secondStr === ''){
+//     return (true)
+//   } else { return(segment.toString() === secondArr.toString())}
+ 
+// }
+// ----------------------------------------------------------- //
