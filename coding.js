@@ -102,3 +102,21 @@
 
 // toWeirdCase('this is a string')
 // ----------------------------------------------------------- //
+
+
+// ----------------------------------------------------------- //
+//  -- Human Readable Time -- //
+// Write a function, which takes a non-negative integer (seconds) as input and returns the time in a human-readable format (HH:MM:SS)
+
+// function humanReadable(seconds) {
+
+//   secs = seconds % 60
+//   mins = Math.floor(seconds / 60 )
+//   hours = Math.floor(mins / 60 )
+  
+//   return(`${("0" + hours).slice(-2)}:${("0" + mins % 60).slice(-2)}:${("0" + secs).slice(-2)}`)
+
+// }
+
+// humanReadable(56456)
+// ----------------------------------------------------------- //
