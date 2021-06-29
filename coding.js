@@ -145,3 +145,43 @@
 //   return(threes + fives)
 // }
 // ----------------------------------------------------------- //
+
+// ----------------------------------------------------------- //
+// -- Convert string to camel case -- //
+
+// Complete the method/function so that it converts dash/underscore delimited words into camel casing. The first word within the output should be capitalized only if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case).
+
+// Examples
+// "the-stealth-warrior" gets converted to "theStealthWarrior"
+// "The_Stealth_Warrior" gets converted to "TheStealthWarrior"
+
+// solution
+
+// def to_camel_case(text):
+//     textArr = list(text)
+//     isAlpha = True
+//     indeces = []
+//     newStr = ''
+    
+//     for i in range(len(textArr)):
+        
+//         if textArr[i] == '_' or textArr[i] == '-':
+// #         if textArr[i] == '_':
+//             isAlpha = False
+            
+//         else : 
+//             isAlpha = True
+            
+//         if isAlpha == True:
+//             newStr += textArr[i]
+            
+//         if isAlpha == False:
+//             textArr[i+1] = textArr[i+1].upper()
+            
+            
+                
+            
+//     return(newStr)
+    
+// to_camel_case('this_is_a_test-variable')
+
