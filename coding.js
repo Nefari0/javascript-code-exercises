@@ -185,3 +185,24 @@
     
 // to_camel_case('this_is_a_test-variable')
 
+// ----------------------------------------------------------- //
+
+//  -- Break camelCase -- //
+
+// Complete the solution so that the function will break up camel casing, using a space between words.
+
+// -- Solution -- //
+// const solution = (string) => {
+//   const strArr = string.split('')
+//   let = newStr = '' // this is where elements will be pushed
+//   for (let i = 0; i < strArr.length; i++){
+//     // newArr.push(strArr[i])
+//     if ( strArr[i] === strArr[i].toUpperCase()) {
+//       newStr += ' ' + strArr[i]
+//       // console.log(strArr[i])
+//     } else {newStr += strArr[i]}
+//   }
+//   return newStr
+// }
+
+// ----------------------------------------------------------- //
