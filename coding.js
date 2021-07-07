@@ -287,3 +287,30 @@
 // }
 
 // ----------------------------------------------------------- //
+
+// ----------------------------------------------------------- //
+// -- Disemvowel Trolls -- // -- although this code works well, it did not pass all the tests on codewars.com
+// Trolls are attacking your comment section!
+
+// A common way to deal with this situation is to remove all of the vowels from the trolls' comments, neutralizing the threat.
+
+// Your task is to write a function that takes a string and return a new string with all vowels removed.
+
+// For example, the string "This website is for losers LOL!" would become "Ths wbst s fr lsrs LL!".
+
+// -- Solution -- //
+
+// const disemvowel = (string) => {
+//   const vowels = 'aeiouAEIOU'
+//   let strArr = string.split('')
+
+//   vowels.split('').forEach(element => {
+//     for(let i = 0; i < strArr.length; i++){
+//       if(element === strArr[i]){
+//         strArr.splice(strArr.indexOf(element),1)
+//       }
+//     }
+//     })
+//     return(strArr.join(''))
+//   }
+// ----------------------------------------------------------- //
