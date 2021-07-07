@@ -240,3 +240,18 @@
 // }
 
 // ----------------------------------------------------------- //
+
+// ----------------------------------------------------------- //
+// -- Is a number prime? -- //
+// Define a function that takes one integer argument and returns logical value true or false depending on if the integer is a prime.
+
+// although this code works well, it is too slow
+
+// -- Solution -- //
+// function isPrime(num){
+//   for (let i = 2; i < num; i++){
+//     if(num % i === 0) return(false)
+//   } return(num > 1)
+// }
+
+// ----------------------------------------------------------- //
