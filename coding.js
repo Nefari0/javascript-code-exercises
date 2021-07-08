@@ -289,7 +289,7 @@
 // ----------------------------------------------------------- //
 
 // ----------------------------------------------------------- //
-// -- Disemvowel Trolls -- // -- although this code works well, it did not pass all the tests on codewars.com
+// -- Disemvowel Trolls -- // 
 // Trolls are attacking your comment section!
 
 // A common way to deal with this situation is to remove all of the vowels from the trolls' comments, neutralizing the threat.
@@ -298,7 +298,7 @@
 
 // For example, the string "This website is for losers LOL!" would become "Ths wbst s fr lsrs LL!".
 
-// -- Solution -- //
+// -- Solution -- // -- although this code works well, it did not pass all the tests on codewars.com
 
 // const disemvowel = (string) => {
 //   const vowels = 'aeiouAEIOU'
@@ -313,4 +313,8 @@
 //     })
 //     return(strArr.join(''))
 //   }
+
+// -- Solution 2 -- //
+// function disemvowel(str) { return str.replace(/[aeiou]/gi, '') }
+
 // ----------------------------------------------------------- //
