@@ -357,3 +357,23 @@
 //   return('')
 // }
 // ----------------------------------------------------------- //
+
+// ----------------------------------------------------------- //
+// -- Encase Characters -- //
+// Write a script that encases all characters in a paranthesis unless it's a whitespace
+
+// -- Solution -- //
+// const encase = (string) => {
+//   var strArr = string.split('')
+//   newStr = ''
+//   strArr.forEach(element => {
+//     if (element === ' ') {
+//       newStr += ' '
+//     } else {
+//       newStr += '(' + element + ')'
+//     }
+//   })
+  
+//   return(newStr)
+// }
+// ----------------------------------------------------------- //
