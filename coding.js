@@ -438,3 +438,22 @@
 //   return(true)
 // }
 // ----------------------------------------------------------- //
+
+// ----------------------------------------------------------- //
+// -- Sum of Pairs -- //
+
+// Given a list of integers and a single sum value, return the first two values (parse from the left please) in order of appearance that add up to form the sum
+
+//  -- Solution -- //
+// const sumPairs = (ints,sum) => {
+//   let result = []
+//   for (let i = 0; i < ints.length; i++) {
+//     const found = ints.find(element => element + ints[i] === sum);
+//     if (ints[i] + found === sum){
+//       return([ints[i],found])
+//     }
+
+//   }
+  
+// }
+// ----------------------------------------------------------- //
