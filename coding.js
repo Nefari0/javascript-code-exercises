@@ -474,3 +474,45 @@
 //   return(newWords)
 // }
 // ----------------------------------------------------------- //
+
+// ----------------------------------------------------------- //
+// --Tic-Tac-Toe Checker --//
+
+// -- Solution -- //
+const isSolved = (board) => {
+  var horrizontalWinner = true
+  var diagonalWinner = true
+  var verticalWinner = true
+  var isValidBoard = false
+  // make sure board consists of only 1s,2s, or 0s
+  // check horrizontal
+  for (let i = 0; i < board.length; i++){
+    for (let j = 0; j < board.length; j++){
+      // if (board[i][j] > 0 && board[i][j] < 3){isValidBoard === true} 
+      var isSame = board[i].filter(element => element === j)
+    if (isSame.length === 3 && isSame[0] > 0) {
+      return(isSame[i])
+    } else {horrizontalWinner = false}
+    }
+  }
+  // check diagonal
+  if(board[0][0] > 0 || board[0][2] > 0){
+    if(board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
+      return(board[0][0])
+  }
+    if(board[2][0] === board[1][1] && board[1][1] === board[0][2]) {
+      return(board[2][0])
+  } else {diagonalWinner = false}
+  }
+  // check vertical
+  for (let i = 0; i < board.length; i++){
+    // console.log(board[0][i],board[1][i])
+    if (board[0][i] === board[1][i] && board[1][i] === board[2][i]){
+      return(board[0][i])
+      } else {verticalWinner = false}
+  }
+
+  if(horrizontalWinner === false && verticalWinner === false && diagonalWinner === false){return(-1)}
+
+}
+// ----------------------------------------------------------- //
