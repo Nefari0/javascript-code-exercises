@@ -483,12 +483,9 @@ const isSolved = (board) => {
   var horrizontalWinner = true
   var diagonalWinner = true
   var verticalWinner = true
-  var isValidBoard = false
-  // make sure board consists of only 1s,2s, or 0s
   // check horrizontal
   for (let i = 0; i < board.length; i++){
     for (let j = 0; j < board.length; j++){
-      // if (board[i][j] > 0 && board[i][j] < 3){isValidBoard === true} 
       var isSame = board[i].filter(element => element === j)
     if (isSame.length === 3 && isSame[0] > 0) {
       return(isSame[i])
@@ -506,7 +503,6 @@ const isSolved = (board) => {
   }
   // check vertical
   for (let i = 0; i < board.length; i++){
-    // console.log(board[0][i],board[1][i])
     if (board[0][i] === board[1][i] && board[1][i] === board[2][i]){
       return(board[0][i])
       } else {verticalWinner = false}
