@@ -530,3 +530,17 @@ const isSolved = (board) => {
   }
 }
 // ----------------------------------------------------------- //
+
+// ----------------------------------------------------------- //
+// -- Human readable duration format -- //
+
+// -- Solution -- //
+const formatDuration = (seconds) => {
+  
+  var hours = Math.floor(seconds / 3600)
+  var mins = Math.floor(seconds / 60 % 60)
+  var secs = seconds % 60
+
+  return(`${hours} hours ${mins} minutes ${secs} seconds`)
+}
+// ----------------------------------------------------------- //
