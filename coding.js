@@ -492,43 +492,43 @@
 // You may assume that the board passed in is valid in the context of a game of Tic-Tac-Toe.
 
 // -- Solution -- //
-const isSolved = (board) => {
-  var horizontalWinner = null
-  var diagonalWinner = null
-  var verticalWinner = null
-  // check horrizontal
-  for (let i = 0; i < board.length; i++){
-    for (let j = 0; j < board.length; j++){
-      var isSame = board[i].filter(element => element === j)
-    if (isSame.length === 3){
-      // return(isSame[i])
-      if (isSame[0] > 0){return(isSame[0])} else {return(-1)}
-    } else {horizontalWinner = false}
-    }
-  }
-  // check diagonal
-    if(board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
-      if(board[0][0] > 0) {return(board[0][0])} else {return(-1)}
-  }
-    if(board[2][0] === board[1][1] && board[1][1] === board[0][2]) {
-      if(board[2][0] > 0) {return(board[0][2])} else {return(-1)}
-  } else {diagonalWinner = false}
+// const isSolved = (board) => {
+//   var horizontalWinner = null
+//   var diagonalWinner = null
+//   var verticalWinner = null
+//   // check horrizontal
+//   for (let i = 0; i < board.length; i++){
+//     for (let j = 0; j < board.length; j++){
+//       var isSame = board[i].filter(element => element === j)
+//     if (isSame.length === 3){
+//       // return(isSame[i])
+//       if (isSame[0] > 0){return(isSame[0])} else {return(-1)}
+//     } else {horizontalWinner = false}
+//     }
+//   }
+//   // check diagonal
+//     if(board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
+//       if(board[0][0] > 0) {return(board[0][0])} else {return(-1)}
+//   }
+//     if(board[2][0] === board[1][1] && board[1][1] === board[0][2]) {
+//       if(board[2][0] > 0) {return(board[0][2])} else {return(-1)}
+//   } else {diagonalWinner = false}
   
-  // check vertical
-  for (let i = 0; i < board.length; i++){
-    if (board[0][i] === board[1][i] && board[1][i] === board[2][i]){
-      return(board[0][i])
-      } else {verticalWinner = false}
-  }
-  // check board for completion
-  for (let i = 0; i < board.length; i++){
-    if(board[i].includes(0) != false) {return (-1)}
-  }
-  // verify draw
-  if (horizontalWinner === false && verticalWinner === false && diagonalWinner === false){
-    return(0)
-  }
-}
+//   // check vertical
+//   for (let i = 0; i < board.length; i++){
+//     if (board[0][i] === board[1][i] && board[1][i] === board[2][i]){
+//       return(board[0][i])
+//       } else {verticalWinner = false}
+//   }
+//   // check board for completion
+//   for (let i = 0; i < board.length; i++){
+//     if(board[i].includes(0) != false) {return (-1)}
+//   }
+//   // verify draw
+//   if (horizontalWinner === false && verticalWinner === false && diagonalWinner === false){
+//     return(0)
+//   }
+// }
 // ----------------------------------------------------------- //
 
 // ----------------------------------------------------------- //
@@ -537,10 +537,28 @@ const isSolved = (board) => {
 // -- Solution -- //
 const formatDuration = (seconds) => {
   
-  var hours = Math.floor(seconds / 3600)
+  // 1 day === 86400 seconds
+  var years = Math.floor(seconds / 31557600)
+  var days = Math.floor(seconds / 86400 % 365)
+  // var days = Math.floor(seconds / 86400 % 365)
+  // var hours = Math.floor(seconds / 3600 % 60)
+  var hours = Math.floor(seconds / 3600 % 24)
   var mins = Math.floor(seconds / 60 % 60)
   var secs = seconds % 60
+  // console.log(years)
 
-  return(`${hours} hours ${mins} minutes ${secs} seconds`)
+  var mins = Math.floor(seconds / 60 % 60)
+  var secs = seconds % 60
+  // console.log(years)
+
+  return(` ${years} years ${days} days ${hours} hours ${mins} minutes ${secs} seconds`)
 }
+
+// formatDuration(31557600) //year
+// formatDuration(86400) // day
+// formatDuration(3600) // hour
+// formatDuration(60) // minute
+
+// formatDuration(315576010) // test
+
 // ----------------------------------------------------------- //
