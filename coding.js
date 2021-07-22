@@ -561,4 +561,30 @@ const formatDuration = (seconds) => {
 
 // formatDuration(315576010) // test
 
+//  ** updated/incomplete ** //
+
+const formatDuration = (seconds) => {
+  // const isPlural = (input) => (input > 1 ? 's' : ' ')
+  const isPlural = (input) => { return input > input*2 === true ? 's' : ' '}
+  // 1 day === 86400 seconds
+  var years = Math.floor(seconds / 31557600)
+  var yearFormat = `${Math.floor(seconds / 31557600)} year${31557600 > 31557600 ? 's' : ' '}`
+  // var yearFormat = `${Math.floor(seconds / 31557600)} year${isPlural(31557600)}`
+  var days = Math.floor(seconds / 86400 % 365)
+  // var days = Math.floor(seconds / 86400 % 365)
+  // var hours = Math.floor(seconds / 3600 % 60)
+  var hours = Math.floor(seconds / 3600 % 24)
+  var mins = Math.floor(seconds / 60 % 60)
+  var secs = seconds % 60
+  // console.log(years)
+
+  var mins = Math.floor(seconds / 60 % 60)
+  var secs = seconds % 60
+  // console.log(isPlural(secs))
+
+  // return(` ${years} years ${days} days ${hours} hours ${mins} minutes ${secs} seconds`)
+  // return(`${hours} hour${value}`)
+  return(yearFormat)
+}
+
 // ----------------------------------------------------------- //
