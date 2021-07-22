@@ -565,26 +565,32 @@ const formatDuration = (seconds) => {
 
 const formatDuration = (seconds) => {
   // const isPlural = (input) => (input > 1 ? 's' : ' ')
-  const isPlural = (input) => { return input > input*2 === true ? 's' : ' '}
-  // 1 day === 86400 seconds
-  var years = Math.floor(seconds / 31557600)
-  var yearFormat = `${Math.floor(seconds / 31557600)} year${31557600 > 31557600 ? 's' : ' '}`
+  // const isPlural = (input) => { return input > input*2 === true ? 's' : ' '}
+  // time units
+  var year = 31557600
+  var day = 86400
+  var hour = 3600
+  var mins = 60
+
+  // var years = Math.floor(seconds / 31557600)
+  var yearFormat = `${Math.floor(seconds / year)} year${seconds > year*2 ? 's' : ''}`
   // var yearFormat = `${Math.floor(seconds / 31557600)} year${isPlural(31557600)}`
-  var days = Math.floor(seconds / 86400 % 365)
+  var dayFormat = `${Math.floor(seconds / day % 365)} day${seconds > day ? 's' : ''}`
   // var days = Math.floor(seconds / 86400 % 365)
   // var hours = Math.floor(seconds / 3600 % 60)
-  var hours = Math.floor(seconds / 3600 % 24)
-  var mins = Math.floor(seconds / 60 % 60)
-  var secs = seconds % 60
+  var hourFormat = `${Math.floor(seconds / 3600 % 24)} hour${seconds > hour ? 's' : ''}`
+  var minFormat = `${Math.floor(seconds / 60 % 60)} minute${seconds >= mins*2 ? 's' : ''}`
+  var secFormat = `${seconds % 60} second${seconds >= 2 ? 's' : ''}`
   // console.log(years)
 
-  var mins = Math.floor(seconds / 60 % 60)
-  var secs = seconds % 60
+  // var mins = Math.floor(seconds / 60 % 60)
+  // var secs = seconds % 60
   // console.log(isPlural(secs))
 
   // return(` ${years} years ${days} days ${hours} hours ${mins} minutes ${secs} seconds`)
   // return(`${hours} hour${value}`)
-  return(yearFormat)
+  // theString = `${minFormat}`
+  return(secFormat)
 }
 
 // ----------------------------------------------------------- //
