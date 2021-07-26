@@ -566,60 +566,73 @@ const formatDuration = (seconds) => {
 
 const formatDuration = (seconds) => {
 
-  var yearUnit = 31557600
-  // var day = Math.floor(seconds / 86400)
-  // var hour = Math.floor(seconds / 3600)
-  const dayUnit = 86400
-  const hourUnit = 3600
-  const minUnit = 60
+  // this section declares time units, and processes them to determine what is displayed
 
-  // var year = Math.floor(seconds >= yearUnit ? seconds / yearUnit % dayUnit : seconds / yearUnit)
+  const yearUnit = 31557600 // year
+  const dayUnit = 86400 // day
+  const hourUnit = 3600 // hour
+  const minUnit = 60 // minute
+
   var year = Math.floor(seconds >= yearUnit ? seconds / yearUnit : '')
 
-  // var day = Math.floor(seconds >= yearUnit ? seconds % yearUnit / dayUnit : seconds % dayUnit)
-  // var day = Math.floor(seconds >= yearUnit ? seconds / yearUnit % dayUnit : seconds % dayUnit)
   var day = Math.floor(seconds >= yearUnit ? seconds % yearUnit / dayUnit : seconds / dayUnit)
-
-  // 0000 day testing 0000 // --- pending delete
-  // var day1 = seconds / dayUnit
-  // var day2 = seconds % yearUnit / dayUnit
-  // console.log('day 1 testing',day1)
-  // console.log('day 2 testing',day2)
-  // 0000 day testing 0000 //
 
   var hour = Math.floor(seconds >= dayUnit ? (seconds / hourUnit) % (dayUnit / hourUnit) : seconds / hourUnit)
 
   var mins = Math.floor(seconds >= hourUnit ? seconds / minUnit % minUnit : seconds / minUnit)
 
+// this section sets up the actual format of how time units will be displayed
   var sec = seconds >= minUnit ? seconds % minUnit : seconds
-
-  // var yearFormat = `${Math.floor(seconds / year)} year${seconds > year*2 ? 's' : ''}`
-  // var yearFormat = `${Math.floor(seconds / 31557600)} year${isPlural(31557600)}`
-
-  // var dayFormat = `${Math.floor(seconds / day % 365)} day${seconds > day ? 's' : ''}`
 
   var yearFormat = `${year === 0 ? '' : `${year} year${year >= 2 ? 's' : ''}`}`
   var dayFormat = `${day === 0 ? '' : `${day} day${day >= 2 ? 's' : ''}`}`
+
   var hourFormat = `${hour === 0 ? '' : `${hour} hour${hour >= 2 ? 's' : ''}`}`
+
   var secFormat = `${sec === 0 ? '' : `${sec} second${sec >= 2 ? 's' : ''}`}`
+
   var minFormat = `${mins === 0 ? '' : `${mins} minute${mins >= 2 ? 's' : ''}`}`
 
-  const theString = (hourFormat,minFormat,secFormat)
+  // ------- this code may not be used --------------- //
+  // extract all display elements/store in new array
+  const displayArray = []
+  var displayStr = ''
+  const theArray = [yearFormat,dayFormat,hourFormat,minFormat,secFormat]
+  theArray.forEach(element => {
+    var elArr = element.split('')
+    if(parseInt(elArr[0]) >= 0){
+      displayArray.push(element)
+    }
+  })
 
-   //console.log('total seconds',seconds % dayUnit/hourUnit)
-  console.log('seconds',sec)
-  console.log('minute',mins)
-  console.log('hour',hour)
-  console.log('day',day)
-  console.log('year',year)
-  console.log(secFormat)
-  console.log(minFormat)
-  console.log(hourFormat)
-  console.log(dayFormat)
 
+  // // concatonate all leading elements with ','
+  // for (let i = 0; i < displayArray.length-1; i++){
+  //   displayArray[i] += ', '
+  //   displayStr += displayArray[i]
+  // }
+  // // concatonate second to last element with 'and' instead of ','
+  // displayStr += ('and ' + displayArray[displayArray.length - 1])
+  // ------------------------------------------------//
 
-  console.log('this is input/seconds',seconds)
-  return(yearFormat+dayFormat+hourFormat+minFormat+secFormat)
+    // process elements for displaying
+  if (displayArray.length === 1) {
+    return(displayArray[0])
+  } else if (displayArray.length === 2) {
+    return(displayArray[0] + ' and ' + displayArray[1])
+  } else if (displayArray.length > 2) {
+    var displayStr = ''
+    for (let i = 0; i < displayArray.length-2; i++) {
+      displayArray[i] += ', '
+      displayStr += displayArray[i]
+    }
+    displayStr += (displayArray[displayArray.length-2] + ' and ' + displayArray[displayArray.length-1])
+    return(displayStr)
+  }
+
+  
+  // return(yearFormat+dayFormat+hourFormat+minFormat+secFormat)
+  // return(displayStr)
 }
 
 // ----------------------------------------------------------- //
