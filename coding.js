@@ -563,49 +563,63 @@ const formatDuration = (seconds) => {
 
 //  ** ** updated/incomplete ** ** //
 
+
 const formatDuration = (seconds) => {
 
-  var year = 31557600
-  var day = Math.floor(seconds / 86400)
+  var yearUnit = 31557600
+  // var day = Math.floor(seconds / 86400)
   // var hour = Math.floor(seconds / 3600)
   const dayUnit = 86400
   const hourUnit = 3600
   const minUnit = 60
-  // var mins = Math.floor(seconds / 60)
-  // var mins = seconds >= 3600 ? seconds % 3600 : seconds / 60
-  var hour = Math.floor(seconds >= dayUnit ? seconds % dayUnit : seconds / dayUnit)
 
-  var mins = Math.floor(seconds >= hourUnit ? seconds % hourUnit : seconds / 60)
+  // var year = Math.floor(seconds >= yearUnit ? seconds / yearUnit % dayUnit : seconds / yearUnit)
+  var year = Math.floor(seconds >= yearUnit ? seconds / yearUnit : '')
+
+  // var day = Math.floor(seconds >= yearUnit ? seconds % yearUnit / dayUnit : seconds % dayUnit)
+  // var day = Math.floor(seconds >= yearUnit ? seconds / yearUnit % dayUnit : seconds % dayUnit)
+  var day = Math.floor(seconds >= yearUnit ? seconds % yearUnit / dayUnit : seconds / dayUnit)
+
+  // 0000 day testing 0000 // --- pending delete
+  // var day1 = seconds / dayUnit
+  // var day2 = seconds % yearUnit / dayUnit
+  // console.log('day 1 testing',day1)
+  // console.log('day 2 testing',day2)
+  // 0000 day testing 0000 //
+
+  var hour = Math.floor(seconds >= dayUnit ? (seconds / hourUnit) % (dayUnit / hourUnit) : seconds / hourUnit)
+
+  var mins = Math.floor(seconds >= hourUnit ? seconds / minUnit % minUnit : seconds / minUnit)
 
   var sec = seconds >= minUnit ? seconds % minUnit : seconds
 
-  var yearFormat = `${Math.floor(seconds / year)} year${seconds > year*2 ? 's' : ''}`
+  // var yearFormat = `${Math.floor(seconds / year)} year${seconds > year*2 ? 's' : ''}`
   // var yearFormat = `${Math.floor(seconds / 31557600)} year${isPlural(31557600)}`
 
-  var dayFormat = `${Math.floor(seconds / day % 365)} day${seconds > day ? 's' : ''}`
-  // var days = Math.floor(seconds / 86400 % 365)
-  // var hours = Math.floor(seconds / 3600 % 60)
-  // var hourFormat = `${Math.floor(seconds / 3600 % 24)} hour${seconds > hour ? 's' : ''}`
-  // var hourFormat = `${hour % 24} hour${hour >= 2 ? 's' : ''}`
+  // var dayFormat = `${Math.floor(seconds / day % 365)} day${seconds > day ? 's' : ''}`
 
-  // var minFormat = `${Math.floor(seconds / 60 % 60)} minute${seconds >= mins*2 ? 's' : ''}`
-
-  // var minFormat = `${mins % 60} minute${mins >= 2 ? 's and' : ' and'}` //reserve
-  // var minFormat = `${ mins < 59 ? `${mins % 60} minute${mins >= 2 ? 's and' : ' and'}` : ''}`
+  var yearFormat = `${year === 0 ? '' : `${year} year${year >= 2 ? 's' : ''}`}`
+  var dayFormat = `${day === 0 ? '' : `${day} day${day >= 2 ? 's' : ''}`}`
   var hourFormat = `${hour === 0 ? '' : `${hour} hour${hour >= 2 ? 's' : ''}`}`
   var secFormat = `${sec === 0 ? '' : `${sec} second${sec >= 2 ? 's' : ''}`}`
   var minFormat = `${mins === 0 ? '' : `${mins} minute${mins >= 2 ? 's' : ''}`}`
 
+  const theString = (hourFormat,minFormat,secFormat)
 
-
+   //console.log('total seconds',seconds % dayUnit/hourUnit)
   console.log('seconds',sec)
   console.log('minute',mins)
   console.log('hour',hour)
-  // console.log('day',day)
+  console.log('day',day)
+  console.log('year',year)
   console.log(secFormat)
   console.log(minFormat)
   console.log(hourFormat)
-  // return(theString)
+  console.log(dayFormat)
+
+
+  console.log('this is input/seconds',seconds)
+  return(yearFormat+dayFormat+hourFormat+minFormat+secFormat)
 }
 
 // ----------------------------------------------------------- //
