@@ -572,11 +572,15 @@ const formatDuration = (seconds) => {
   const dayUnit = 86400 // day
   const hourUnit = 3600 // hour
   const minUnit = 60 // minute
+  
+  var hourComp = (seconds % yearUnit) / (dayUnit)
+  console.log(hourComp)
 
   var year = Math.floor(seconds >= yearUnit ? seconds / yearUnit : '')
 
-
-  var day = Math.floor(seconds >= yearUnit ? (seconds % yearUnit / dayUnit) + Math.floor(year / 4) : seconds / dayUnit)
+  var day = Math.floor(seconds >= yearUnit ? (seconds % yearUnit / dayUnit) + Math.round(year / 4) : seconds / dayUnit)
+//   var day = Math.floor(seconds >= yearUnit ? (seconds % yearUnit / dayUnit) : seconds / dayUnit)
+  // console.log('this calculates leap year',(yearUnit/dayUnit)/4)
 
   var hour = Math.floor(seconds >= dayUnit ? (seconds / hourUnit) % (dayUnit / hourUnit) : seconds / hourUnit)
 
@@ -586,6 +590,7 @@ const formatDuration = (seconds) => {
   var sec = seconds >= minUnit ? seconds % minUnit : seconds
 
   var yearFormat = `${year === 0 ? '' : `${year} year${year >= 2 ? 's' : ''}`}`
+
   var dayFormat = `${day === 0 ? '' : `${day} day${day >= 2 ? 's' : ''}`}`
 
   var hourFormat = `${hour === 0 ? '' : `${hour} hour${hour >= 2 ? 's' : ''}`}`
