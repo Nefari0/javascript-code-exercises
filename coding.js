@@ -568,14 +568,15 @@ const formatDuration = (seconds) => {
 
   // this section declares time units, and processes them to determine what is displayed
 
-  const yearUnit = 31557600 // year
+  const yearUnit = 31557600  // year
   const dayUnit = 86400 // day
   const hourUnit = 3600 // hour
   const minUnit = 60 // minute
 
   var year = Math.floor(seconds >= yearUnit ? seconds / yearUnit : '')
 
-  var day = Math.floor(seconds >= yearUnit ? seconds % yearUnit / dayUnit : seconds / dayUnit)
+
+  var day = Math.floor(seconds >= yearUnit ? (seconds % yearUnit / dayUnit) + Math.floor(year / 4) : seconds / dayUnit)
 
   var hour = Math.floor(seconds >= dayUnit ? (seconds / hourUnit) % (dayUnit / hourUnit) : seconds / hourUnit)
 
@@ -593,7 +594,6 @@ const formatDuration = (seconds) => {
 
   var minFormat = `${mins === 0 ? '' : `${mins} minute${mins >= 2 ? 's' : ''}`}`
 
-  // ------- this code may not be used --------------- //
   // extract all display elements/store in new array
   const displayArray = []
   var displayStr = ''
@@ -605,17 +605,12 @@ const formatDuration = (seconds) => {
     }
   })
 
-
-  // // concatonate all leading elements with ','
-  // for (let i = 0; i < displayArray.length-1; i++){
-  //   displayArray[i] += ', '
-  //   displayStr += displayArray[i]
-  // }
-  // // concatonate second to last element with 'and' instead of ','
-  // displayStr += ('and ' + displayArray[displayArray.length - 1])
-  // ------------------------------------------------//
-
     // process elements for displaying
+  
+  if(seconds <= 0) {
+    return('now')
+  }
+  
   if (displayArray.length === 1) {
     return(displayArray[0])
   } else if (displayArray.length === 2) {
@@ -632,7 +627,7 @@ const formatDuration = (seconds) => {
 
   
   // return(yearFormat+dayFormat+hourFormat+minFormat+secFormat)
-  // return(displayStr)
+  return(displayStr)
 }
 
 // ----------------------------------------------------------- //
