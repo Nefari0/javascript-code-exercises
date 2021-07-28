@@ -534,72 +534,56 @@
 // ----------------------------------------------------------- //
 // -- Human readable duration format -- //
 
+// Your task in order to complete this Kata is to write a function which formats a duration, given as a number of seconds, in a human-friendly way.
+
+// The function must accept a non-negative integer. If it is zero, it just returns "now". Otherwise, the duration is expressed as a combination of years, days, hours, minutes and seconds.
+
+// It is much easier to understand with an example:
+
+// formatDuration(62)    // returns "1 minute and 2 seconds"
+// formatDuration(3662)  // returns "1 hour, 1 minute and 2 seconds"
+// For the purpose of this Kata, a year is 365 days and a day is 24 hours.
+
+// Note that spaces are important.
+
+// Detailed rules
+// The resulting expression is made of components like 4 seconds, 1 year, etc. In general, a positive integer and one of the valid units of time, separated by a space. The unit of time is used in plural if the integer is greater than 1.
+
+// The components are separated by a comma and a space (", "). Except the last component, which is separated by " and ", just like it would be written in English.
+
+// A more significant units of time will occur before than a least significant one. Therefore, 1 second and 1 year is not correct, but 1 year and 1 second is.
+
+// Different components have different unit of times. So there is not repeated units like in 5 seconds and 1 second.
+
+// A component will not appear at all if its value happens to be zero. Hence, 1 minute and 0 seconds is not valid, but it should be just 1 minute.
+
+// A unit of time must be used "as much as possible". It means that the function should not return 61 seconds, but 1 minute and 1 second instead. Formally, the duration specified by of a component must not be greater than any valid more significant unit of time.
+
 // -- Solution -- //
 const formatDuration = (seconds) => {
-  
-  // 1 day === 86400 seconds
-  var years = Math.floor(seconds / 31557600)
-  var days = Math.floor(seconds / 86400 % 365)
-  // var days = Math.floor(seconds / 86400 % 365)
-  // var hours = Math.floor(seconds / 3600 % 60)
-  var hours = Math.floor(seconds / 3600 % 24)
-  var mins = Math.floor(seconds / 60 % 60)
-  var secs = seconds % 60
-  // console.log(years)
 
-  var mins = Math.floor(seconds / 60 % 60)
-  var secs = seconds % 60
-  // console.log(years)
-
-  return(` ${years} years ${days} days ${hours} hours ${mins} minutes ${secs} seconds`)
-}
-
-// formatDuration(31557600) //year
-// formatDuration(86400) // day
-// formatDuration(3600) // hour
-// formatDuration(60) // minute
-
-// formatDuration(315576010) // test
-
-//  ** ** updated/incomplete ** ** //
-
-
-const formatDuration = (seconds) => {
-
-  // this section declares time units, and processes them to determine what is displayed
+// this section declares time units, and processes them to determine what is displayed
 
   const yearUnit = 31557600  // year
   const dayUnit = 86400 // day
   const hourUnit = 3600 // hour
   const minUnit = 60 // minute
-  
-  var hourComp = (seconds % yearUnit) / (dayUnit)
-  console.log(hourComp)
 
   var year = Math.floor(seconds >= yearUnit ? seconds / yearUnit : '')
-
-  var day = Math.floor(seconds >= yearUnit ? (seconds % yearUnit / dayUnit) + Math.round(year / 4) : seconds / dayUnit)
-//   var day = Math.floor(seconds >= yearUnit ? (seconds % yearUnit / dayUnit) : seconds / dayUnit)
-  // console.log('this calculates leap year',(yearUnit/dayUnit)/4)
-
+  var day = Math.floor(seconds >= yearUnit ? (seconds % yearUnit / dayUnit) + (year % 4 < 3 ? Math.floor(year / 4) : Math.ceil(year / 4)) : seconds / dayUnit)
   var hour = Math.floor(seconds >= dayUnit ? (seconds / hourUnit) % (dayUnit / hourUnit) : seconds / hourUnit)
-
   var mins = Math.floor(seconds >= hourUnit ? seconds / minUnit % minUnit : seconds / minUnit)
-
-// this section sets up the actual format of how time units will be displayed
   var sec = seconds >= minUnit ? seconds % minUnit : seconds
+  
+// this section sets up the actual format of how time units will be displayed
 
   var yearFormat = `${year === 0 ? '' : `${year} year${year >= 2 ? 's' : ''}`}`
-
   var dayFormat = `${day === 0 ? '' : `${day} day${day >= 2 ? 's' : ''}`}`
-
   var hourFormat = `${hour === 0 ? '' : `${hour} hour${hour >= 2 ? 's' : ''}`}`
-
   var secFormat = `${sec === 0 ? '' : `${sec} second${sec >= 2 ? 's' : ''}`}`
-
   var minFormat = `${mins === 0 ? '' : `${mins} minute${mins >= 2 ? 's' : ''}`}`
 
-  // extract all display elements/store in new array
+// extract all display elements/store in new array
   const displayArray = []
   var displayStr = ''
   const theArray = [yearFormat,dayFormat,hourFormat,minFormat,secFormat]
@@ -610,7 +594,7 @@ const formatDuration = (seconds) => {
     }
   })
 
-    // process elements for displaying
+// process elements for displaying
   
   if(seconds <= 0) {
     return('now')
@@ -629,10 +613,5 @@ const formatDuration = (seconds) => {
     displayStr += (displayArray[displayArray.length-2] + ' and ' + displayArray[displayArray.length-1])
     return(displayStr)
   }
-
-  
-  // return(yearFormat+dayFormat+hourFormat+minFormat+secFormat)
-  return(displayStr)
-}
 
 // ----------------------------------------------------------- //
