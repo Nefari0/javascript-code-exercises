@@ -641,62 +641,52 @@ const isValidWalk = (walk) => {
 
 //  --- Morse Code Translator --- //
 //  this is not a codewars.com kata //
+
+// when sending morse code to the translator function, you must add an extra space between words to recieve readable text, otherwise the recieved text will only be one word.
+
 const morseTranslator = (str) => {
 
-  const charList = {
-    '._' : 'a',
-    '_...' : 'b',
-    '_._.' : 'c',
-    '_..' : 'd',
-    '.' : 'e',
-    '.._.' : 'f',
-    '._' : 'g',
-    '....' : 'h',
-    '..' : 'i',
-    '.__.' : 'j',
-    '_._' :'k',
-    '.._.' : 'l',
-    '__' : 'm',
-    '_.' : 'n',
-    '___' : 'o',
-    '.__.' : 'p',
-    '__._' : 'q',
-    '._.' : 'r',
-    '...' : 's',
-    '__' : 't',
-    '.._' : 'u',
-    '..._' : 'v',
-    '.__' : 'w',
-    '_.._' : 'x',
-    '_.__' : 'y',
-    '__..' : 'z'
-  }
-  
-  // iterate over input array. for each element: compare each element with charList element. When a match is found, apply the appropriate character
-  var stringArr = str.split(' ')
-  var alphaStr = ''
-  stringArr.forEach(element => {
-    for (let prop in charList){
-    // console.log('element',element,'prop',prop)
-      if(element == prop){ alphaStr += charList[prop]}
-  }
-  })
-      console.log(alphaStr)
+  morseStrArr = str.split(' ')
+  charStrArr = str.split('')
+  var strArr = (morseStrArr[0] != '-' || morseStrArr[0] === '.' ?  charStrArr : morseStrArr)
 
-  // console.log(stringArr)
+  var newString = ''
+    strArr.forEach(inputValue => {
+      if(inputValue === 'a' || inputValue === '.-') {(inputValue === 'a' ? newString += '.-' : newString += 'a')}
+      if(inputValue === 'b' || inputValue === '-...') {(inputValue === 'b' ? newString += '-...' : newString += 'b')}
+      if(inputValue === 'c' || inputValue === '-.-.') {(inputValue === 'c' ? newString += '-.-.' : newString += 'c')}
+      if(inputValue === 'd' || inputValue === '-..') {(inputValue === 'd' ? newString += '-..' : newString += 'd')}
+      if(inputValue === 'e' || inputValue === '.') {(inputValue === 'e' ? newString += '.' : newString += 'e')}
+      if(inputValue === 'f' || inputValue === '.-..') {(inputValue === 'f' ? newString += '.-..' : newString += 'f')}
+      if(inputValue === 'g' || inputValue === '--.') {(inputValue === 'g' ? newString += '--.' : newString += 'g')}
+      if(inputValue === 'h' || inputValue === '....') {(inputValue === 'h' ? newString += '....' : newString += 'h')}
+      if(inputValue === 'i' || inputValue === '..') {(inputValue === 'i' ? newString += '..' : newString += 'i')}
+      if(inputValue === 'j' || inputValue === '.---') {(inputValue === 'j' ? newString += '.---' : newString += 'j')}
+      if(inputValue === 'k' || inputValue === '-.-') {(inputValue === 'k' ? newString += '-.-' : newString += 'k')}
+      if(inputValue === 'l' || inputValue === '.-..') {(inputValue === 'l' ? newString += '.-..' : newString += 'l')}
+      if(inputValue === 'm' || inputValue === '--') {(inputValue === 'm' ? newString += '--' : newString += 'm')}
+      if(inputValue === 'n' || inputValue === '-.') {(inputValue === 'n' ? newString += '-.' : newString += 'n')}
+      if(inputValue === 'o' || inputValue === '---') {(inputValue === 'o' ? newString += '---' : newString += 'o')}
+      if(inputValue === 'p' || inputValue === '.--.') {(inputValue === 'p' ? newString += '.--.' : newString += 'p')}
+      if(inputValue === 'q' || inputValue === '--.-') {(inputValue === 'q' ? newString += '--.-' : newString += 'q')}
+      if(inputValue === 'r' || inputValue === '.-.') {(inputValue === 'r' ? newString += '.-.' : newString += 'r')}
+      if(inputValue === 's' || inputValue === '...') {(inputValue === 's' ? newString += '...' : newString += 's')}
+      if(inputValue === 't' || inputValue === '-') {(inputValue === 't' ? newString += '-' : newString += 't')}
+      if(inputValue === 'u' || inputValue === '..-') {(inputValue === 'u' ? newString += '..-' : newString += 'u')}
+      if(inputValue === 'v' || inputValue === '...-') {(inputValue === 'v' ? newString += '...-' : newString += 'v')}
+      if(inputValue === 'w' || inputValue === '.--') {(inputValue === 'w' ? newString += '.--' : newString += 'w')}
+      if(inputValue === 'x' || inputValue === '-..-') {(inputValue === 'x' ? newString += '-..-' : newString += 'x')}
+      if(inputValue === 'y' || inputValue === '-.--') {(inputValue === 'y' ? newString += '-.--' : newString += 'y')}
+      if(inputValue === 'z' || inputValue === '--..') {(inputValue === 'z' ? newString += '--..' : newString += 'z')}
+      
+      if(strArr != morseStrArr){newString += ' '} // adds space between characters if translating to Morse
+      if(inputValue === '') {newString += ' '} // adds space between words if translating to human readable words
+    })
+
+    return('newString',newString)
 }
 
-const array = '_._. .... ._. .. ...'
-
-morseTranslator(array)
-
-//  the block below will allow the translation of code to word and words to code
-var str1 = 'c'
-var str2 = '_._.'
-var x = 1
-var y = 0
-
-const ternery = (val) => {
-  // (x > y ? str1 : str2 )
-  console.log(val === str2 ? 'c' : '_._.' )
-}
+const morseString = '- .... .. ...  .. ...  .-  ... - .-. .. -. --.'
+const wordString = 'this is a string'
+morseTranslator(morseString)
+morseTranslator(wordString)
