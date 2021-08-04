@@ -636,3 +636,56 @@ const isValidWalk = (walk) => {
   return(n+s+e+w === distance ? (e-w === 0 && n-s === 0 ? true : false) : false)
 
 }
+
+// ----------------------------------------------------------------------------- //
+
+//  --- Morse Code Translator --- //
+//  this is not a codewars.com kata //
+const morseTranslator = (str) => {
+
+  const charList = {
+    '._' : 'a',
+    '_...' : 'b',
+    '_._.' : 'c',
+    '_..' : 'd',
+    '.' : 'e',
+    '.._.' : 'f',
+    '._' : 'g',
+    '....' : 'h',
+    '..' : 'i',
+    '.__.' : 'j',
+    '_._' :'k',
+    '.._.' : 'l',
+    '__' : 'm',
+    '_.' : 'n',
+    '___' : 'o',
+    '.__.' : 'p',
+    '__._' : 'q',
+    '._.' : 'r',
+    '...' : 's',
+    '__' : 't',
+    '.._' : 'u',
+    '..._' : 'v',
+    '.__' : 'w',
+    '_.._' : 'x',
+    '_.__' : 'y',
+    '__..' : 'z'
+  }
+  
+  // iterate over input array. for each element: compare each element with charList element. When a match is found, apply the appropriate character
+  var stringArr = str.split(' ')
+  var alphaStr = ''
+  stringArr.forEach(element => {
+    for (let prop in charList){
+    // console.log('element',element,'prop',prop)
+      if(element == prop){ alphaStr += charList[prop]}
+  }
+  })
+      console.log(alphaStr)
+
+  // console.log(stringArr)
+}
+
+const array = '_._. .... ._. .. ...'
+
+morseTranslator(array)
