@@ -689,3 +689,14 @@ const morseTranslator = (str) => {
 const array = '_._. .... ._. .. ...'
 
 morseTranslator(array)
+
+//  the block below will allow the translation of code to word and words to code
+var str1 = 'c'
+var str2 = '_._.'
+var x = 1
+var y = 0
+
+const ternery = (val) => {
+  // (x > y ? str1 : str2 )
+  console.log(val === str2 ? 'c' : '_._.' )
+}
