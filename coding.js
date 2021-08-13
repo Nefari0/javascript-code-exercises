@@ -695,28 +695,23 @@ morseTranslator(wordString)
 
 // / generate hashtag from string
 function generateHashtag (str) {
-//   convert str to array of words
-  var strArr = str.split(' ')
+  //   convert str to array of words
+    var strArr = str.split(' ')
+  
+    // uppercase leading letters of each word using .split() method
+  
+    var strArrCaps = '#'
 
-  // uppercase leading letters of each word using .split() method
-
-  var strArrCaps = ''
-  // strArr.forEach(element => element.split('')[0] != undefined ? strArrCaps += element.split('')[0] + element.slice(1,element.length) : false )
-
-  strArr.forEach(element => element.split('')[0] != undefined ? strArrCaps += element.split('')[0] + element.slice(1,element.length) : false )
-
-  // join strArr into new string (concatenated)
-
-  // remove all white space from new string
-
-  var strArrReplace = str.replace(/\s+/g, '')
-
-  // add hashtag to beginning of newstring
-
+    strArr.forEach(element => element.split('')[0] != undefined ? strArrCaps +=  element.split('')[0].toUpperCase() + element.slice(1,element.length) : [])
 
   
-  console.log(strArrCaps)
-}
+    var strArrReplace = str.replace(/\s+/g, '')
+
+  
+    if(str != '' && strArr.length < 140){return(strArrCaps)} else {return false}
+    
+    
+  }
 
 
 // samples
