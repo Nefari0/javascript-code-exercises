@@ -691,28 +691,38 @@ const wordString = 'this is a string'
 morseTranslator(morseString)
 morseTranslator(wordString)
 
-// ------------------------------//
+// ----------------------------------------------------------------------------- //
+// --- The Hashtag Generator --- //
 
-// / generate hashtag from string
+// The marketing team is spending way too much time typing in hashtags.
+// Let's help them with our own Hashtag Generator!
+
+// Here's the deal:
+
+// It must start with a hashtag (#).
+// All words must have their first letter capitalized.
+// If the final result is longer than 140 chars it must return false.
+// If the input or the result is an empty string it must return false.
+
+// --- Solutuin --- //
+
 function generateHashtag (str) {
 
   var strArr = str.split(' ')
 
-  var strArrCaps = ''
+  var strArrCaps = '#'
 
-  strArr.forEach(element => element.split('')[0] != undefined ? strArrCaps += '#' + element.split('')[0].toUpperCase() + element.slice(1,element.length) : [])
+  strArr.forEach(element => element.split('')[0] != undefined ? strArrCaps += element.split('')[0].toUpperCase() + element.slice(1,element.length) : [])
 
-  if(str != '' && strArr.length < 140){return(strArrCaps)} else {return(false)}
-    // if(str != ''){return(strArrCaps)} else {return(false)}
+  switch (str) {
+    case '':
+      return(false)
+    case ' ':
+      return(false)
+    default:
+      if(strArrCaps != '#' && strArrCaps.length <= 140){return(strArrCaps)} else {return(false)}
+  }
   
-  // switch (str) {
-  //   case 
-  // }
 }
 
-
-// samples
-const str1 = " Hello there thanks for trying my Kata "
-
-str2 = "    Hello     World   "                  
-generateHashtag(str1)
+// ----------------------------------------------------------------------------- //
