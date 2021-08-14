@@ -698,12 +698,16 @@ function generateHashtag (str) {
 
   var strArr = str.split(' ')
 
-  var strArrCaps = '#'
+  var strArrCaps = ''
 
-  strArr.forEach(element => element.split('')[0] != undefined ? strArrCaps += element.split('')[0].toUpperCase() + element.slice(1,element.length) : [])
+  strArr.forEach(element => element.split('')[0] != undefined ? strArrCaps += '#' + element.split('')[0].toUpperCase() + element.slice(1,element.length) : [])
 
   if(str != '' && strArr.length < 140){return(strArrCaps)} else {return(false)}
+    // if(str != ''){return(strArrCaps)} else {return(false)}
   
+  // switch (str) {
+  //   case 
+  // }
 }
 
 
